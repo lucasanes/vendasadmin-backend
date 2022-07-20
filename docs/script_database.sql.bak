@@ -9,8 +9,8 @@ CREATE TABLE sigeve.usuario
     email character varying(100),
     senha character varying(20),
 	id_ref bigint,
-    data_cadastro date DEFAULT NOW(),
-    data_atualizacao date DEFAULT NOW()
+    data_cadastro date,
+    data_atualizacao date
 )
 
 CREATE TABLE sigeve.unidade
@@ -18,7 +18,7 @@ CREATE TABLE sigeve.unidade
     id bigserial NOT NULL PRIMARY KEY,
     descricao character varying(30),
 	codigo_ref character varying(2),
-    data_cadastro date DEFAULT NOW(),
+    data_cadastro date,
     id_usuario bigint REFERENCES sigeve.usuario (id)
 )
 
@@ -29,7 +29,7 @@ CREATE TABLE sigeve.produto
     id_unidade bigint REFERENCES sigeve.unidade (id),
 	codigo_ean character varying(13),
 	codigo_ref character varying(6),
-    data_cadastro date DEFAULT NOW(),
+    data_cadastro date,
     id_usuario bigint REFERENCES sigeve.usuario (id)
 )
 
@@ -48,7 +48,7 @@ CREATE TABLE sigeve.fornecedor
     email  character varying(100),
 	observacao character varying(100),
 	codigo_ref character varying(6),
-    data_cadastro date DEFAULT NOW(),
+    data_cadastro date,
     id_usuario bigint REFERENCES sigeve.usuario (id)
 )
 
@@ -67,7 +67,7 @@ CREATE TABLE sigeve.empresa
     email  character varying(100),
 	observacao character varying(100),
 	codigo_ref character varying(2),
-    data_cadastro date DEFAULT NOW(),
+    data_cadastro date,
     id_usuario bigint REFERENCES sigeve.usuario (id)
 )
 
@@ -79,8 +79,8 @@ CREATE TABLE sigeve.nota_entrada
     id_fornecedor bigint REFERENCES sigeve.fornecedor (id),
     observacao character varying(100),
     valor_total numeric(14,2),
-    data_cadastro date DEFAULT NOW(),
-	data_atualizacao date DEFAULT NOW(),
+    data_cadastro date,
+	data_atualizacao date,
     id_usuario bigint REFERENCES sigeve.usuario (id)
 )
 
