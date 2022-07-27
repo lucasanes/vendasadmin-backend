@@ -11,8 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "item_nota_entrada", schema = "sigeve")
+@Data
 public class ItemNotaEntrada {
 
 	@Id
@@ -36,53 +39,5 @@ public class ItemNotaEntrada {
 	
 	@Column(name = "total")
 	private BigDecimal total;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public NotaEntrada getNotaEntrada() {
-		return notaEntrada;
-	}
-
-	public void setNotaEntrada(NotaEntrada notaEntrada) {
-		this.notaEntrada = notaEntrada;
-	}
-
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
-	public BigDecimal getQtd() {
-		return qtd;
-	}
-
-	public void setQtd(BigDecimal qtd) {
-		this.qtd = qtd;
-	}
-
-	public BigDecimal getPreco() {
-		return preco;
-	}
-
-	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
-	}
-
-	public BigDecimal getTotal() {
-		return total;
-	}
-
-	public void setTotal(BigDecimal total) {
-		this.total = total;
-	}
 
 }

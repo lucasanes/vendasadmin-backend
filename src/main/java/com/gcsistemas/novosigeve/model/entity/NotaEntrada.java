@@ -12,14 +12,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "nota_entrada", schema = "sigeve")
+@Data
 public class NotaEntrada {
 
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(name = "numero_nota")
+	private Long numeroNota; 
 	
 	@Column(name = "data_nota")
 	private Date dataNota;
@@ -38,6 +44,9 @@ public class NotaEntrada {
 	@Column(name = "observacao")
 	private String observacao;
 	
+	@Column(name = "cancelada")
+	private Boolean cancelada;
+	
 	@Column(name = "data_cadastro")
 	private Date dataCadastro;
 	
@@ -47,76 +56,8 @@ public class NotaEntrada {
 
 	@Column(name = "data_atualizacao")
 	private Date dataAtualizacao;
+	
+	@Column(name = "data_cancelamento")
+	private Date dataCancelamento;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataNota() {
-		return dataNota;
-	}
-
-	public void setDataNota(Date dataNota) {
-		this.dataNota = dataNota;
-	}
-
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-
-	public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
-
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
-	}
-
-	public BigDecimal getValorTotal() {
-		return valorTotal;
-	}
-
-	public void setValorTotal(BigDecimal valorTotal) {
-		this.valorTotal = valorTotal;
-	}
-
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
-
-	public Date getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCadastro(Date dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	public Date getDataAtualizacao() {
-		return dataAtualizacao;
-	}
-
-	public void setDataAtualizacao(Date dataAtualizacao) {
-		this.dataAtualizacao = dataAtualizacao;
-	}
 }

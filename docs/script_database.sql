@@ -68,19 +68,23 @@ CREATE TABLE sigeve.empresa
 	observacao character varying(100),
 	codigo_ref character varying(2),
     data_cadastro date DEFAULT NOW(),
-    id_usuario bigint REFERENCES sigeve.usuario (id)
+    id_usuario bigint REFERENCES sigeve.usuario (id),
+    proximo_numero_nota decimal(10)
 )
 
 CREATE TABLE sigeve.nota_entrada
 (
     id bigserial NOT NULL PRIMARY KEY,
+	numero_nota decimal(10),
     data_nota date,
     id_empresa bigint REFERENCES sigeve.empresa (id),
     id_fornecedor bigint REFERENCES sigeve.fornecedor (id),
     observacao character varying(100),
     valor_total numeric(14,2),
+	cancelada int,
     data_cadastro date DEFAULT NOW(),
 	data_atualizacao date DEFAULT NOW(),
+	data_cancelamento date DEFAULT NOW(),
     id_usuario bigint REFERENCES sigeve.usuario (id)
 )
 
