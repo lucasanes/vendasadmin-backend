@@ -2,7 +2,10 @@ package com.gcsistemas.novosigeve.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,31 +20,38 @@ public class NotaEntradaServiceImpl implements NotaEntradaService{
 	
 	@Override
 	public List<NotaEntrada> buscaPorPeriodo(Date dtInicio, Date dtFim) {
-		
-		return repository.findByPeriodoOrderByEmpresaAscNumeroNotaAsc();
+//		return repository.findByPeriodoOrderByEmpresaAscNumeroNotaAsc();
+		return null;
 	}
 
 	@Override
 	public List<NotaEntrada> buscaPorFornecedor(Long idFornecedor) {
-		
-		return repository.findByFornecedorOrderByEmpresaAscNumeroNotaAsc();
+//		return repository.findByFornecedorOrderByEmpresaAscNumeroNotaAsc();
+		return null;
 	}
 
 	@Override
 	public Optional<NotaEntrada> buscaRegistro(Long id) {
-		
 		return repository.findById(id);
 	}
 	
 	@Override
+	@Transactional
 	public NotaEntrada salvar(NotaEntrada notaEntrada) {
-
+		return repository.save(notaEntrada);
+	}
+	
+	@Override
+	@Transactional
+	public NotaEntrada atualizar(NotaEntrada notaEntrada) {
+		Objects.requireNonNull(notaEntrada.getId());
 		return repository.save(notaEntrada);
 	}
 
 	@Override
+	@Transactional
 	public void cancelar(NotaEntrada notaEntrada) {
-		
+		Objects.requireNonNull(notaEntrada.getId());
 		repository.cancelar(notaEntrada.getId(), new Date());
 	}
 

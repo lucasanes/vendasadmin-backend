@@ -12,6 +12,6 @@ public interface UnidadeRepository extends JpaRepository<Unidade, Long>{
 	
 	boolean findByDescricao(String descricao);
 	
-	boolean findProdutoByUnidadeId(Long id);
+	boolean findProdutoById(Long id);
 
 }

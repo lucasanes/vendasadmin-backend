@@ -16,6 +16,8 @@ public interface NotaEntradaService {
 	
 	NotaEntrada salvar(NotaEntrada notaEntrada);
 	
+	NotaEntrada atualizar(NotaEntrada notaEntrada);
+	
 	void cancelar(NotaEntrada notaEntrada);
 	
 }

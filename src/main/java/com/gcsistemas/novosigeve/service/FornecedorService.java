@@ -11,7 +11,11 @@ public interface FornecedorService {
 	
 	Optional<Fornecedor> buscaRegistro(Long id);
 	
+	List<Fornecedor> buscar(Fornecedor filtro);
+	
 	Fornecedor salvar(Fornecedor fornecedor);
+	
+	Fornecedor atualizar(Fornecedor fornecedor);
 	
 	void excluir(Fornecedor fornecedor);
 	

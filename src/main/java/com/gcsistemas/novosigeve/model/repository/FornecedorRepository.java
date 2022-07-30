@@ -12,6 +12,6 @@ public interface FornecedorRepository extends JpaRepository<Fornecedor, Long>{
 
 	boolean findByNome(String nome);
 
-	boolean findNotaEntradaByFornecedorId(Long id);
+	boolean findNotaEntradaById(Long id);
 
 }

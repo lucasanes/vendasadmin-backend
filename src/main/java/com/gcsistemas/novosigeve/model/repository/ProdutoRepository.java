@@ -12,6 +12,6 @@ public interface ProdutoRepository  extends JpaRepository<Produto, Long>{
 
 	boolean findByDescricao(String descricao);
 
-	boolean findItemNotaEntradaByProdutoId(Long id);
+	boolean findItemNotaEntradaById(Long id);
 
 }

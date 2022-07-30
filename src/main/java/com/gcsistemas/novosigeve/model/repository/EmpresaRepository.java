@@ -10,8 +10,10 @@ public interface EmpresaRepository extends JpaRepository<Empresa, Long>{
 
 	List<Empresa> findAllByOrderByNomeAsc();
 
-	boolean findByNome(String nome);
+	List<Empresa> findByNome(String nome);
 
-	boolean findNotaEntradaByEmpresaId(Long id);
+	List<Empresa> findByNomeContaining(String nome);
+	
+	boolean findNotaEntradaById(Long id);
 
 }

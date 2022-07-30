@@ -11,7 +11,11 @@ public interface ProdutoService {
 	
 	Optional<Produto> buscaRegistro(Long id);
 	
+	List<Produto> buscar(Produto filtro);
+	
 	Produto salvar(Produto produto);
+	
+	Produto atualizar(Produto produto);
 	
 	void excluir(Produto produto);
 	

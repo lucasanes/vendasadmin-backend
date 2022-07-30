@@ -11,11 +11,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "produto", schema = "sigeve")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Produto {
 
 	@Id
@@ -27,7 +33,7 @@ public class Produto {
 	private String descricao;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_usuario")
+	@JoinColumn(name = "id_unidade")
 	private Unidade unidade;
 	
 	@Column(name = "codigo_ean")

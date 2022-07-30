@@ -11,7 +11,11 @@ public interface UnidadeService {
 	
 	Optional<Unidade> buscaRegistro(Long id);
 	
+	List<Unidade> buscar(Unidade filtro);
+	
 	Unidade salvar(Unidade unidade);
+	
+	Unidade atualizar(Unidade unidade);
 	
 	void excluir(Unidade unidade);
 	
