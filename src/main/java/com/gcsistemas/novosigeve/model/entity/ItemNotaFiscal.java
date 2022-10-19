@@ -17,12 +17,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "item_nota_entrada", schema = "sigeve")
+@Table(name = "item_nota_fiscal", schema = "sigeve")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemNotaEntrada {
+public class ItemNotaFiscal {
 
 	@Id
 	@Column(name = "id")
@@ -30,8 +30,8 @@ public class ItemNotaEntrada {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_nota_entrada")
-	private NotaEntrada notaEntrada;
+	@JoinColumn(name = "id_nota_fiscal")
+	private NotaFiscal notaFiscal;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_produto")

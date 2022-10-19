@@ -5,15 +5,15 @@ import java.util.Date;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.gcsistemas.novosigeve.model.entity.NotaEntrada;
+import com.gcsistemas.novosigeve.model.entity.NotaFiscal;
 
-public interface NotaEntradaRepository extends JpaRepository<NotaEntrada, Long>{
+public interface NotaFiscalRepository extends JpaRepository<NotaFiscal, Long>{
 
 //	List<NotaEntrada> findByPeriodoOrderByEmpresaAscNumeroNotaAsc();
 
 //	List<NotaEntrada> findByFornecedorOrderByEmpresaAscNumeroNotaAsc();
 
-	@Query("UPDATE NotaEntrada SET cancelada = 1, dataCancelamento = ?2 WHERE id = ?1")
+	@Query("UPDATE NotaFiscal SET cancelada = 1, dataCancelamento = ?2 WHERE id = ?1")
 	void cancelar(Long id, Date dataCancelamento);
 
 }

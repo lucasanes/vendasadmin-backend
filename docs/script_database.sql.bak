@@ -92,7 +92,7 @@ CREATE TABLE sigeve.nota_fiscal
 CREATE TABLE sigeve.item_nota_fiscal
 (
     id bigserial NOT NULL PRIMARY KEY,
-    id_nota_fiscal bigint REFERENCES sigeve.nota_fiscal (id),
+    id_nota_fiscal bigint REFERENCES sigeve.nota_entrada (id),
     id_produto bigint REFERENCES sigeve.produto (id),
     qtd numeric(9),
     preco numeric(10,2),

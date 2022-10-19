@@ -4,20 +4,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import com.gcsistemas.novosigeve.model.entity.NotaEntrada;
+import com.gcsistemas.novosigeve.model.entity.NotaFiscal;
 
 public interface NotaEntradaService {
 
-	List<NotaEntrada> buscaPorPeriodo(Date dtInicio, Date dtFim);
+	List<NotaFiscal> buscaPorPeriodo(Date dtInicio, Date dtFim);
 	
-	List<NotaEntrada> buscaPorFornecedor(Long idFornecedor);
+	List<NotaFiscal> buscaPorFornecedor(Long idFornecedor);
 	
-	Optional<NotaEntrada> buscaRegistro(Long id);
+	Optional<NotaFiscal> buscaRegistro(Long id);
 	
-	NotaEntrada salvar(NotaEntrada notaEntrada);
+	NotaFiscal salvar(NotaFiscal notaEntrada);
 	
-	NotaEntrada atualizar(NotaEntrada notaEntrada);
+	NotaFiscal atualizar(NotaFiscal notaEntrada);
 	
-	void cancelar(NotaEntrada notaEntrada);
+	void cancelar(NotaFiscal notaEntrada);
 	
 }

@@ -12,18 +12,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.gcsistemas.novosigeve.util.TipoNotaEnum;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "nota_entrada", schema = "sigeve")
+@Table(name = "nota_fiscal", schema = "sigeve")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class NotaEntrada {
+public class NotaFiscal {
 
 	@Id
 	@Column(name = "id")
@@ -35,6 +37,9 @@ public class NotaEntrada {
 	
 	@Column(name = "data_nota")
 	private Date dataNota;
+	
+	@Column(name = "tipo_nota")
+	private TipoNotaEnum tipoNota;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_empresa")
