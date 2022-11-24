@@ -32,7 +32,7 @@ public class EmpresaServiceImpl implements EmpresaService {
 
 	@Override
 	public List<Empresa> buscar(Empresa filtro){
-		return repository.findByNomeContaining(filtro.getNome());
+		return repository.findByNomeContainingIgnoreCase(filtro.getNome());
 	}
 	
 	@Override

@@ -12,7 +12,7 @@ public interface EmpresaRepository extends JpaRepository<Empresa, Long>{
 
 	List<Empresa> findByNome(String nome);
 
-	List<Empresa> findByNomeContaining(String nome);
+	List<Empresa> findByNomeContainingIgnoreCase(String nome);
 	
 	boolean findNotaEntradaById(Long id);
 
