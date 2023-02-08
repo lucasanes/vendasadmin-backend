@@ -89,6 +89,14 @@ public class EmpresaController {
 			new ResponseEntity("Empresa não encontrada na base de dados.", HttpStatus.BAD_REQUEST));
 	}
 	
+	@GetMapping("{id}")
+	public ResponseEntity obterPorId(@PathVariable("id") Long id) {
+		
+		return empresaService.buscaRegistro(id)
+				.map(empresa -> new ResponseEntity(converter(empresa), HttpStatus.OK))
+				.orElseGet(() -> new ResponseEntity(HttpStatus.NOT_FOUND));
+	}
+
 	private Empresa converter(EmpresaDTO dto) {
 		Empresa converter = new Empresa();
 		converter.setId(dto.getId());
@@ -102,4 +110,14 @@ public class EmpresaController {
 		
 		return converter;
 	}
+	
+	private EmpresaDTO converter(Empresa empresa) {
+
+		return EmpresaDTO.builder()
+			.id(empresa.getId())
+			.nome(empresa.getNome())
+			.usuario(empresa.getUsuario().getId())
+			.build();
+	}
+	
 }

@@ -16,4 +16,6 @@ public interface NotaFiscalRepository extends JpaRepository<NotaFiscal, Long>{
 	@Query("UPDATE NotaFiscal SET cancelada = 1, dataCancelamento = ?2 WHERE id = ?1")
 	void cancelar(Long id, Date dataCancelamento);
 
+	@Query("SELECT 1 FROM NotaFiscal WHERE empresa.id = ?1")
+	NotaFiscal findNotaEntradaByIdEmpresa(Long idEmpresa);
 }

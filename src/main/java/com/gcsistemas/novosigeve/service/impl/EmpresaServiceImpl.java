@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import com.gcsistemas.novosigeve.exception.RegraNegocioException;
 import com.gcsistemas.novosigeve.model.entity.Empresa;
+import com.gcsistemas.novosigeve.model.entity.NotaFiscal;
 import com.gcsistemas.novosigeve.model.repository.EmpresaRepository;
+import com.gcsistemas.novosigeve.model.repository.NotaFiscalRepository;
 import com.gcsistemas.novosigeve.service.EmpresaService;
 
 @Service
@@ -19,6 +21,9 @@ public class EmpresaServiceImpl implements EmpresaService {
 
 	@Autowired
 	private EmpresaRepository repository;
+	
+	@Autowired
+	private NotaFiscalRepository notaFiscalRepository;
 	
 	@Override
 	public List<Empresa> buscaTodosRegistros() {
@@ -64,7 +69,9 @@ public class EmpresaServiceImpl implements EmpresaService {
 	}
 	
 	private void validaExistenciaNota(Empresa empresa) {
-		if (repository.findNotaEntradaById(empresa.getId())) {
+		NotaFiscal notaFiscal = notaFiscalRepository.findNotaEntradaByIdEmpresa(empresa.getId());
+		
+		if (notaFiscal != null) {
 			throw new RegraNegocioException("Esta empresa já possui notas associadas. Não é possível excluí-la.");
 		}
 	}
