@@ -15,19 +15,19 @@ import com.gcsistemas.novosigeve.util.PropriedadesAplicacao;
 @EnableWebMvc
 public class NovoSigeveApplication implements WebMvcConfigurer {
 
-	@Override
-	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
-	}
-	
-	private static final Logger logger = LoggerFactory.getLogger(NovoSigeveApplication.class);
-	
-	public static void main(String[] args) {
-		SpringApplication.run(NovoSigeveApplication.class, args);
-		logger.info("===> {}", PropriedadesAplicacao.getInstance());
-		logger.info("===> {}", Ambiente.getAmbiente());
-		
-		logger.info("APP INICIADA");
-	}
-	
+  @Override
+  public void addCorsMappings(@SuppressWarnings("null") CorsRegistry registry) {
+    registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
+  }
+
+  private static final Logger logger = LoggerFactory.getLogger(NovoSigeveApplication.class);
+
+  public static void main(String[] args) {
+    SpringApplication.run(NovoSigeveApplication.class, args);
+    logger.info("===> {}", PropriedadesAplicacao.getInstance());
+    logger.info("===> {}", Ambiente.getAmbiente());
+
+    logger.info("APP INICIADA");
+  }
+
 }
