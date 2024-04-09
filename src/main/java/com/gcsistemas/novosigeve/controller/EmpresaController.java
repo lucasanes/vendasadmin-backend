@@ -104,8 +104,19 @@ public class EmpresaController {
     Empresa converter = new Empresa();
     converter.setId(dto.getId());
     converter.setNome(dto.getNome());
+    converter.setCpfCnpj(dto.getCpfCnpj());
+    converter.setEmail(dto.getEmail());
+    converter.setTelefone(dto.getTelefone());
+    converter.setInscricao(dto.getInscricao());
+    converter.setCep(dto.getCep());
+    converter.setEndereco(dto.getEndereco());
+    converter.setUf(dto.getUf());
+    converter.setCidade(dto.getCidade());
+    converter.setBairro(dto.getBairro());
+    converter.setObservacao(dto.getObservacao());
+    converter.setProximoNumeroNota(dto.getProximoNumeroNota());
 
-    Usuario usuario = usuarioService.findById(dto.getUsuario())
+    Usuario usuario = usuarioService.findById(dto.getUsuarioId())
         .orElseThrow(() -> new RegraNegocioException("Usuário não encontrado para o id informado"));
 
     converter.setUsuario(usuario);
@@ -118,7 +129,7 @@ public class EmpresaController {
     return EmpresaDTO.builder()
         .id(empresa.getId())
         .nome(empresa.getNome())
-        .usuario(empresa.getUsuario().getId())
+        .usuarioId(empresa.getUsuario().getId())
         .build();
   }
 

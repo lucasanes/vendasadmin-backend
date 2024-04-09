@@ -5,7 +5,7 @@ CREATE SCHEMA sigeve
 SELECT * from sigeve.usuario
 
 INSERT INTO sigeve.usuario (nome, email, senha)
-VALUES ('Lucas', 'lucas@gmail.com', 'senha123');
+VALUES ('Lucas', 'lucas@gmail.com', 'Lucas123');
 
 DELETE FROM sigeve.usuario WHERE id = 1;
 
@@ -13,18 +13,24 @@ DROP TABLE sigeve.usuario CASCADE
 
 CREATE TABLE sigeve.usuario
 (
-    id bigserial NOT NULL PRIMARY KEY,
-    nome character varying(150) NOT NULL,
-    email character varying(100) NOT NULL,
-    senha character varying(20) NOT NULL,
-    data_cadastro date DEFAULT NOW(),
-    data_atualizacao date DEFAULT NOW()
+  id bigserial NOT NULL PRIMARY KEY,
+  nome character varying(150) NOT NULL,
+  email character varying(100) NOT NULL,
+  senha character varying(20) NOT NULL,
+  data_cadastro date DEFAULT NOW(),
+  data_atualizacao date DEFAULT NOW()
 )
 
 SELECT * from sigeve.empresa
 
-INSERT INTO sigeve.empresa (nome, email, senha, id_ref)
-VALUES ('Nome do Usuário', 'email@example.com', 'senha123', 1);
+INSERT INTO sigeve.empresa (
+  id, nome, cpf_cnpj, inscricao, endereco, bairro, cep, cidade, uf, telefone, email, 
+  observacao, proximo_numero_nota, id_usuario
+)
+VALUES (
+  'Empresa', '17156398717', '1010', 'Rua', 'Bairro', '00000000', 'Cidade', 'UF', '00000000', 'eu@gmail.com',
+  'Observação', 1, 1
+);
 
 DELETE FROM sigeve.empresa WHERE id = 1;
 
@@ -32,21 +38,21 @@ DROP TABLE sigeve.empresa CASCADE
 
 CREATE TABLE sigeve.empresa
 (
-    id bigserial NOT NULL PRIMARY KEY,
-    nome character varying(100) NOT NULL,
-    cpf_cnpj character varying(30) NOT NULL,
-    inscricao character varying(20) NOT NULL,
-    endereco character varying(60) NOT NULL,
-	bairro character varying(40) NOT NULL,
-	cep character varying(8) NOT NULL,
-	cidade character varying(40) NOT NULL,
-	uf character varying(2) NOT NULL,
-	telefone character varying(20) NOT NULL,
-    email  character varying(100) NOT NULL,
-	observacao character varying(100),
-    proximo_numero_nota decimal(10) NOT NULL,
-    data_cadastro date DEFAULT NOW(),
-    id_usuario bigint REFERENCES sigeve.usuario (id) NOT NULL
+  id bigserial NOT NULL PRIMARY KEY,
+  nome character varying(100) NOT NULL,
+  cpf_cnpj character varying(30) NOT NULL,
+  inscricao character varying(20) NOT NULL,
+  endereco character varying(60) NOT NULL,
+  bairro character varying(40) NOT NULL,
+  cep character varying(8) NOT NULL,
+  cidade character varying(40) NOT NULL,
+  uf character varying(2) NOT NULL,
+  telefone character varying(20) NOT NULL,
+  email  character varying(100) NOT NULL,
+  observacao character varying(100),
+  proximo_numero_nota decimal(10) NOT NULL,
+  data_cadastro date DEFAULT NOW(),
+  id_usuario bigint REFERENCES sigeve.usuario (id) NOT NULL
 )
 
 CREATE TABLE sigeve.unidade
