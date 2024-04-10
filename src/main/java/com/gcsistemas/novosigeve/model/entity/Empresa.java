@@ -35,29 +35,28 @@ public class Empresa {
   @Column(name = "cpf_cnpj")
   private String cpfCnpj;
 
-  @Column(name = "inscricao")
-  private String inscricao;
-
-  @Column(name = "endereco")
-  private String endereco;
-
-  @Column(name = "bairro")
-  private String bairro;
-
-  @Column(name = "cep")
-  private String cep;
-
-  @Column(name = "cidade")
-  private String cidade;
-
-  @Column(name = "uf")
-  private String uf;
+  @Column(name = "email")
+  private String email;
 
   @Column(name = "telefone")
   private String telefone;
 
-  @Column(name = "email")
-  private String email;
+  @Column(name = "inscricao")
+  private String inscricao;
+
+  @Column(name = "cep")
+  private String cep;
+
+  @Column(name = "endereco")
+  private String endereco;
+
+  @Column(name = "uf")
+  private String uf;
+  @Column(name = "cidade")
+  private String cidade;
+
+  @Column(name = "bairro")
+  private String bairro;
 
   @Column(name = "observacao")
   private String observacao;
@@ -65,11 +64,10 @@ public class Empresa {
   @Column(name = "data_cadastro")
   private Date dataCadastro;
 
-  @ManyToOne
-  @JoinColumn(name = "id_usuario")
-  private Usuario usuario;
-
   @Column(name = "proximo_numero_nota")
   private Long proximoNumeroNota;
 
+  @ManyToOne
+  @JoinColumn(name = "id_usuario")
+  private Usuario usuario;
 }

@@ -35,6 +35,9 @@ public class UsuarioController {
   @SuppressWarnings("rawtypes")
   @PostMapping("/salvar")
   public ResponseEntity salvar(@RequestBody UsuarioDTO request) {
+
+    // TODO: Criptografar a senha do usuário
+
     Usuario usuario = Usuario.builder()
         .nome(request.getNome())
         .email(request.getEmail())
@@ -68,6 +71,9 @@ public class UsuarioController {
   @PostMapping("/autenticar")
   public ResponseEntity autenticar(@RequestBody UsuarioDTO request) {
 
+    // TODO: Descriptografar a senha e comparar com a senha do usuário
+    // TODO: Criar o token JWT apenas com o id do usuário
+
     try {
       Usuario usuarioAutenticado = usuarioService.autenticar(request.getEmail(), request.getSenha());
       String token = jwtUtil.generateToken(usuarioAutenticado);
@@ -83,6 +89,8 @@ public class UsuarioController {
   @SuppressWarnings({ "rawtypes", "unchecked" })
   @GetMapping("/validar/{token}")
   public ResponseEntity validar(@PathVariable("token") String token) {
+
+    // TODO: Validar o token, e quando decodificar, pegar o usuário pelo id
 
     try {
       Boolean tokenIsValid = jwtUtil.validateToken(token);

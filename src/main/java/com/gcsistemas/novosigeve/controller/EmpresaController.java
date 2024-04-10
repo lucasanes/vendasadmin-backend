@@ -53,7 +53,6 @@ public class EmpresaController {
   @PostMapping("/salvar")
   public ResponseEntity salvar(@RequestBody EmpresaDTO request) {
     Empresa entidade = converter(request);
-    entidade.setDataCadastro(new Date());
 
     try {
       entidade = empresaService.salvar(entidade);
@@ -101,27 +100,28 @@ public class EmpresaController {
   }
 
   private Empresa converter(EmpresaDTO dto) {
-    Empresa converter = new Empresa();
-    converter.setId(dto.getId());
-    converter.setNome(dto.getNome());
-    converter.setCpfCnpj(dto.getCpfCnpj());
-    converter.setEmail(dto.getEmail());
-    converter.setTelefone(dto.getTelefone());
-    converter.setInscricao(dto.getInscricao());
-    converter.setCep(dto.getCep());
-    converter.setEndereco(dto.getEndereco());
-    converter.setUf(dto.getUf());
-    converter.setCidade(dto.getCidade());
-    converter.setBairro(dto.getBairro());
-    converter.setObservacao(dto.getObservacao());
-    converter.setProximoNumeroNota(dto.getProximoNumeroNota());
 
     Usuario usuario = usuarioService.findById(dto.getUsuarioId())
         .orElseThrow(() -> new RegraNegocioException("Usuário não encontrado para o id informado"));
 
-    converter.setUsuario(usuario);
+    return Empresa.builder()
+        .id(dto.getId())
+        .nome(dto.getNome())
+        .cpfCnpj(dto.getCpfCnpj())
+        .email(dto.getEmail())
+        .telefone(dto.getTelefone())
+        .inscricao(dto.getInscricao())
+        .cep(dto.getCep())
+        .endereco(dto.getEndereco())
+        .uf(dto.getUf())
+        .cidade(dto.getCidade())
+        .bairro(dto.getBairro())
+        .observacao(dto.getObservacao())
+        .dataCadastro(new Date())
+        .proximoNumeroNota(dto.getProximoNumeroNota())
+        .usuario(usuario)
+        .build();
 
-    return converter;
   }
 
   private EmpresaDTO converter(Empresa empresa) {
