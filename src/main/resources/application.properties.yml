@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: ${PROD_DB_URL}
+    username: ${PROD_DB_USERNAME}
+    password: ${PROD_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+server:
+  port: 8081
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 1209600
+
+app:
+  sigla: SIGEVE
+  ambiente: LOCAL
+  contexto: /local
+
+application:
+  name: Sistema de Gerenciamento de VendasD
