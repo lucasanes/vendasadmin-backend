@@ -24,52 +24,50 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Empresa {
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(name = "nome")
-	private String nome;
-	
-	@Column(name = "cpf_cnpj")
-	private String cpfCnpj;
-	
-	@Column(name = "inscricao")
-	private String inscricao;
-	
-	@Column(name = "endereco")
-	private String endereco;
-	
-	@Column(name = "bairro")
-	private String bairro;
-	
-	@Column(name = "cep")
-	private String cep;
-	
-	@Column(name = "cidade")
-	private String cidade;
-	
-	@Column(name = "uf")
-	private String uf;
-	
-	@Column(name = "telefone")
-	private String telefone;
-	
-	@Column(name = "email")
-	private String email;
-	
-	@Column(name = "observacao")
-	private String observacao;
-	
-	@Column(name = "data_cadastro")
-	private Date dataCadastro;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_usuario")
-	private Usuario usuario;
-	
-	@Column(name = "proximo_numero_nota")
-	private Long proximoNumeroNota; 
+  @Id
+  @Column(name = "id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
+  @Column(name = "nome")
+  private String nome;
+
+  @Column(name = "cpf_cnpj")
+  private String cpfCnpj;
+
+  @Column(name = "email")
+  private String email;
+
+  @Column(name = "telefone")
+  private String telefone;
+
+  @Column(name = "inscricao")
+  private String inscricao;
+
+  @Column(name = "cep")
+  private String cep;
+
+  @Column(name = "endereco")
+  private String endereco;
+
+  @Column(name = "uf")
+  private String uf;
+  @Column(name = "cidade")
+  private String cidade;
+
+  @Column(name = "bairro")
+  private String bairro;
+
+  @Column(name = "observacao")
+  private String observacao;
+
+  @Column(name = "data_cadastro")
+  private Date dataCadastro;
+
+  @Column(name = "proximo_numero_nota")
+  private Long proximoNumeroNota;
+
+  @ManyToOne
+  @JoinColumn(name = "id_usuario")
+  private Usuario usuario;
 }

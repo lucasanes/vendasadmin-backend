@@ -19,61 +19,61 @@ import com.gcsistemas.novosigeve.service.EmpresaService;
 @Service
 public class EmpresaServiceImpl implements EmpresaService {
 
-	@Autowired
-	private EmpresaRepository repository;
-	
-	@Autowired
-	private NotaFiscalRepository notaFiscalRepository;
-	
-	@Override
-	public List<Empresa> buscaTodosRegistros() {
-		return repository.findAllByOrderByNomeAsc();
-	}
+  @Autowired
+  private EmpresaRepository repository;
 
-	@Override
-	public Optional<Empresa> buscaRegistro(Long id) {
-		return repository.findById(id);
-	}
+  @Autowired
+  private NotaFiscalRepository notaFiscalRepository;
 
-	@Override
-	public List<Empresa> buscar(Empresa filtro){
-		return repository.findByNomeContainingIgnoreCase(filtro.getNome());
-	}
-	
-	@Override
-	@Transactional
-	public Empresa salvar(Empresa empresa) {
-		validaNome(empresa);
-		return repository.save(empresa);
-	}
-	
-	@Override
-	@Transactional
-	public Empresa atualizar(Empresa empresa) {
-		Objects.requireNonNull(empresa.getId());
-		return repository.save(empresa);
-	}
+  @Override
+  public List<Empresa> buscaTodosRegistros() {
+    return repository.findAllByOrderByNomeAsc();
+  }
 
-	@Override
-	@Transactional
-	public void excluir(Empresa empresa) {
-		Objects.requireNonNull(empresa.getId());
-		validaExistenciaNota(empresa);
-		repository.delete(empresa);
-	}
+  @Override
+  public Optional<Empresa> buscaRegistro(Long id) {
+    return repository.findById(id);
+  }
 
-	private void validaNome(Empresa empresa) {
-		if (!repository.findByNome(empresa.getNome()).isEmpty()) {
-			throw new RegraNegocioException("Já existe empresa cadastrada com o nome informado.");
-		}
-	}
-	
-	private void validaExistenciaNota(Empresa empresa) {
-		NotaFiscal notaFiscal = notaFiscalRepository.findNotaEntradaByIdEmpresa(empresa.getId());
-		
-		if (notaFiscal != null) {
-			throw new RegraNegocioException("Esta empresa já possui notas associadas. Não é possível excluí-la.");
-		}
-	}
-	
+  @Override
+  public List<Empresa> buscar(Empresa filtro) {
+    return repository.findByNomeContainingIgnoreCase(filtro.getNome());
+  }
+
+  @Override
+  @Transactional
+  public Empresa salvar(Empresa empresa) {
+    validaNome(empresa);
+    return repository.save(empresa);
+  }
+
+  @Override
+  @Transactional
+  public Empresa atualizar(Empresa empresa) {
+    Objects.requireNonNull(empresa.getId());
+    return repository.save(empresa);
+  }
+
+  @Override
+  @Transactional
+  public void excluir(Empresa empresa) {
+    Objects.requireNonNull(empresa.getId());
+    validaExistenciaNota(empresa);
+    repository.delete(empresa);
+  }
+
+  private void validaNome(Empresa empresa) {
+    if (!repository.findByNome(empresa.getNome()).isEmpty()) {
+      throw new RegraNegocioException("Já existe empresa cadastrada com o nome informado.");
+    }
+  }
+
+  private void validaExistenciaNota(Empresa empresa) {
+    NotaFiscal notaFiscal = notaFiscalRepository.findNotaEntradaByIdEmpresa(empresa.getId());
+
+    if (notaFiscal != null) {
+      throw new RegraNegocioException("Esta empresa já possui notas associadas. Não é possível excluí-la.");
+    }
+  }
+
 }
