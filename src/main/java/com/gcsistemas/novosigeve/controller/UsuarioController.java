@@ -72,7 +72,6 @@ public class UsuarioController {
   public ResponseEntity autenticar(@RequestBody UsuarioDTO request) {
 
     // TODO: Descriptografar a senha e comparar com a senha do usuário
-    // TODO: Criar o token JWT apenas com o id do usuário
 
     try {
       Usuario usuarioAutenticado = usuarioService.autenticar(request.getEmail(), request.getSenha());
@@ -90,12 +89,16 @@ public class UsuarioController {
   @GetMapping("/validar/{token}")
   public ResponseEntity validar(@PathVariable("token") String token) {
 
-    // TODO: Validar o token, e quando decodificar, pegar o usuário pelo id
-
     try {
       Boolean tokenIsValid = jwtUtil.validateToken(token);
 
-      Usuario usuario = jwtUtil.extractUsuario(token);
+      if (!tokenIsValid) {
+        return ResponseEntity.badRequest().body("Token inválido.");
+      }
+
+      Usuario usuarioId = jwtUtil.extractUsuario(token);
+
+      Usuario usuario = usuarioService.findById(usuarioId.getId()).get();
 
       TokenResponse response = new TokenResponse(tokenIsValid, usuario);
 
