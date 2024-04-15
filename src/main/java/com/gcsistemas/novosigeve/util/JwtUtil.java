@@ -26,11 +26,6 @@ public class JwtUtil {
   public String generateToken(Usuario usuario) {
     Map<String, Object> claims = new HashMap<>();
     claims.put("id", usuario.getId());
-    claims.put("nome", usuario.getNome());
-    claims.put("email", usuario.getEmail());
-    claims.put("senha", usuario.getSenha());
-    claims.put("dataAtualizacao", usuario.getDataAtualizacao());
-    claims.put("dataCadastro", usuario.getDataCadastro());
 
     return createToken(claims, secret);
   }
@@ -66,11 +61,6 @@ public class JwtUtil {
     final Claims claims = extractAllClaims(token);
     Usuario usuario = new Usuario();
     usuario.setId(claims.get("id", Long.class));
-    usuario.setNome(claims.get("nome", String.class));
-    usuario.setEmail(claims.get("email", String.class));
-    usuario.setSenha(claims.get("senha", String.class));
-    usuario.setDataAtualizacao(claims.get("dataAtualizacao", Date.class));
-    usuario.setDataCadastro(claims.get("dataCadastro", Date.class));
 
     return usuario;
   }
