@@ -17,26 +17,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "unidade", schema = "sigeve")
+@Table(name = "unidade", schema = "public")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Unidade {
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(name = "descricao")
-	private String descricao;
-	
-	@Column(name = "data_cadastro")
-	private Date dataCadastro;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_usuario")
-	private Usuario usuario;
+  @Id
+  @Column(name = "id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  @Column(name = "descricao")
+  private String descricao;
+
+  @Column(name = "data_cadastro")
+  private Date dataCadastro;
+
+  @ManyToOne
+  @JoinColumn(name = "id_usuario")
+  private Usuario usuario;
 
 }

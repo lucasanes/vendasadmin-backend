@@ -20,55 +20,55 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "nota_fiscal", schema = "sigeve")
+@Table(name = "nota_fiscal", schema = "public")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class NotaFiscal {
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(name = "numero_nota")
-	private Long numeroNota; 
-	
-	@Column(name = "data_nota")
-	private Date dataNota;
-	
-	@Column(name = "tipo_nota")
-	private TipoNotaEnum tipoNota;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_empresa")
-	private Empresa empresa;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_fornecedor")
-	private Fornecedor fornecedor;
-	
-	@Column(name = "valor_total")
-	private BigDecimal valorTotal;
+  @Id
+  @Column(name = "id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	@Column(name = "observacao")
-	private String observacao;
-	
-	@Column(name = "cancelada")
-	private Boolean cancelada;
-	
-	@Column(name = "data_cadastro")
-	private Date dataCadastro;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_usuario")
-	private Usuario usuario;
+  @Column(name = "numero_nota")
+  private Long numeroNota;
 
-	@Column(name = "data_atualizacao")
-	private Date dataAtualizacao;
-	
-	@Column(name = "data_cancelamento")
-	private Date dataCancelamento;
+  @Column(name = "data_nota")
+  private Date dataNota;
+
+  @Column(name = "tipo_nota")
+  private TipoNotaEnum tipoNota;
+
+  @ManyToOne
+  @JoinColumn(name = "id_empresa")
+  private Empresa empresa;
+
+  @ManyToOne
+  @JoinColumn(name = "id_fornecedor")
+  private Fornecedor fornecedor;
+
+  @Column(name = "valor_total")
+  private BigDecimal valorTotal;
+
+  @Column(name = "observacao")
+  private String observacao;
+
+  @Column(name = "cancelada")
+  private Boolean cancelada;
+
+  @Column(name = "data_cadastro")
+  private Date dataCadastro;
+
+  @ManyToOne
+  @JoinColumn(name = "id_usuario")
+  private Usuario usuario;
+
+  @Column(name = "data_atualizacao")
+  private Date dataAtualizacao;
+
+  @Column(name = "data_cancelamento")
+  private Date dataCancelamento;
 
 }

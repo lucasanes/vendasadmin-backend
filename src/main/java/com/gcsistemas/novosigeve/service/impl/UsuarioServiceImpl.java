@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.gcsistemas.novosigeve.exception.ErroAutenticacao;
@@ -20,6 +21,8 @@ public class UsuarioServiceImpl implements UsuarioService {
   @Autowired
   private UsuarioRepository repository;
 
+  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
   @Override
   public Optional<Usuario> findById(Long id) {
     return repository.findById(id);
@@ -29,7 +32,7 @@ public class UsuarioServiceImpl implements UsuarioService {
   public Usuario autenticar(String email, String senha) {
     Optional<Usuario> usuario = repository.findByEmail(email);
 
-    if (!usuario.isPresent() || !usuario.get().getSenha().equals(senha)) {
+    if (!usuario.isPresent() || !passwordEncoder.matches(senha, usuario.get().getSenha())) {
       throw new ErroAutenticacao("Dados inválidos.");
     }
 

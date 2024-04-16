@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,16 +33,18 @@ public class UsuarioController {
   @Autowired
   private UsuarioService usuarioService;
 
+  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
   @SuppressWarnings("rawtypes")
   @PostMapping("/salvar")
   public ResponseEntity salvar(@RequestBody UsuarioDTO request) {
 
-    // TODO: Criptografar a senha do usuário
+    String senhaCriptografada = passwordEncoder.encode(request.getSenha());
 
     Usuario usuario = Usuario.builder()
         .nome(request.getNome())
         .email(request.getEmail())
-        .senha(request.getSenha()).build();
+        .senha(senhaCriptografada).build();
 
     try {
       usuario.setDataCadastro(new Date());
@@ -70,8 +73,6 @@ public class UsuarioController {
   @SuppressWarnings({ "rawtypes", "unchecked" })
   @PostMapping("/autenticar")
   public ResponseEntity autenticar(@RequestBody UsuarioDTO request) {
-
-    // TODO: Descriptografar a senha e comparar com a senha do usuário
 
     try {
       Usuario usuarioAutenticado = usuarioService.autenticar(request.getEmail(), request.getSenha());
