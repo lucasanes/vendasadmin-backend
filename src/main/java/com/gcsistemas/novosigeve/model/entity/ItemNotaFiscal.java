@@ -17,33 +17,33 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "item_nota_fiscal", schema = "sigeve")
+@Table(name = "item_nota_fiscal", schema = "public")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemNotaFiscal {
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_nota_fiscal")
-	private NotaFiscal notaFiscal;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_produto")
-	private Produto produto;
-	
-	@Column(name = "qtd")
-	private BigDecimal qtd;
-	
-	@Column(name = "preco")
-	private BigDecimal preco;
-	
-	@Column(name = "total")
-	private BigDecimal total;
+  @Id
+  @Column(name = "id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  @ManyToOne
+  @JoinColumn(name = "id_nota_fiscal")
+  private NotaFiscal notaFiscal;
+
+  @ManyToOne
+  @JoinColumn(name = "id_produto")
+  private Produto produto;
+
+  @Column(name = "qtd")
+  private BigDecimal qtd;
+
+  @Column(name = "preco")
+  private BigDecimal preco;
+
+  @Column(name = "total")
+  private BigDecimal total;
 
 }
