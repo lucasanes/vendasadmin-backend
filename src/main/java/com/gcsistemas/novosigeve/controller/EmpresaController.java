@@ -95,7 +95,7 @@ public class EmpresaController {
   public ResponseEntity obterPorId(@PathVariable("id") Long id) {
 
     return empresaService.buscaRegistro(id)
-        .map(empresa -> new ResponseEntity(converter(empresa), HttpStatus.OK))
+        .map(empresa -> new ResponseEntity(empresa, HttpStatus.OK))
         .orElseGet(() -> new ResponseEntity(HttpStatus.NOT_FOUND));
   }
 
