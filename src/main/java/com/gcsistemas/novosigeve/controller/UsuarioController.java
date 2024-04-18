@@ -56,12 +56,16 @@ public class UsuarioController {
   }
 
   @SuppressWarnings({ "rawtypes", "unchecked" })
-  @PutMapping("/alterarSenha/{id}")
-  public ResponseEntity alterarSenha(@PathVariable("id") Long id, @RequestBody UsuarioDTO request) {
-    return usuarioService.findById(id).map(entity -> {
+  @PutMapping("/alterarSenha/{email}")
+  public ResponseEntity alterarSenha(@PathVariable("email") String email, @RequestBody UsuarioDTO request) {
+    return usuarioService.findByEmail(email).map(entity -> {
       try {
-        Usuario entidade = converter(request);
-        entidade.setId(entity.getId());
+        Usuario entidade = entity;
+
+        String senhaCriptografada = passwordEncoder.encode(request.getSenha());
+
+        entidade.setSenha(senhaCriptografada);
+
         usuarioService.alterarSenha(entidade);
         return ResponseEntity.ok(entidade);
       } catch (RegraNegocioException e) {

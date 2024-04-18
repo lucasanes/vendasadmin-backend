@@ -29,6 +29,11 @@ public class UsuarioServiceImpl implements UsuarioService {
   }
 
   @Override
+  public Optional<Usuario> findByEmail(String email) {
+    return repository.findByEmail(email);
+  }
+
+  @Override
   public Usuario autenticar(String email, String senha) {
     Optional<Usuario> usuario = repository.findByEmail(email);
 
