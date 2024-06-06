@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gcsistemas</groupId>
-	<artifactId>novosigeve</artifactId>
+	<artifactId>vendasadmin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>novosigeve</name>
+	<name>vendasadmin</name>
 	<description>Sistema de Gerenciamento de Vendas</description>
 	<properties>
 		<java.version>11</java.version>

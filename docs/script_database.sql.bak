@@ -1,4 +1,4 @@
-CREATE DATABASE novosigeve
+CREATE DATABASE vendasadmin
 
 CREATE SCHEMA sigeve
 
